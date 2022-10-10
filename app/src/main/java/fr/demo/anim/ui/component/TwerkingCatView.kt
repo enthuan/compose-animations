@@ -18,7 +18,6 @@ import fr.demo.anim.R
 @Composable
 fun TwerkingCatView(modifier: Modifier = Modifier) {
 
-    // TODO ARO 4 1 Splash
     val infiniteTransition = rememberInfiniteTransition()
     val assRotation by infiniteTransition.animateFloat(
         initialValue = -20f,
@@ -41,9 +40,7 @@ fun TwerkingCatView(modifier: Modifier = Modifier) {
             contentDescription = "Twerking cat",
             modifier = Modifier.fillMaxSize()
                 .graphicsLayer {
-                    rotationZ = rotationValue
-                    // TODO ARO 4 1 Splash
-                    //rotationZ = assRotation
+                    rotationZ = assRotation
                 },
             contentScale = ContentScale.Fit
         )

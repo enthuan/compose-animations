@@ -62,19 +62,8 @@ fun CatLoadingItem(
 
     val circleValue = animatable.value
     val distance = with(LocalDensity.current) { travelDistance.toPx() }
-    Box(
-        modifier = Modifier
-            .size(circleSize/2)
-            .graphicsLayer {
-                translationY = -circleValue * distance
-            }
-            .background(
-                color = circleColor,
-                shape = CircleShape
-            )
-    )
-    // TODO BCR 4 2 Loading 2
-    /*Image(
+
+    Image(
         modifier = Modifier
             .size(circleSize)
             .graphicsLayer {
@@ -83,6 +72,6 @@ fun CatLoadingItem(
         painter = painterResource(id = R.drawable.cat_icon),
         contentDescription = null,
         colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary)
-    )*/
+    )
 
 }

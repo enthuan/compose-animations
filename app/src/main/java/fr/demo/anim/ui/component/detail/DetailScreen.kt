@@ -66,8 +66,7 @@ fun DetailScreen(id: String?, onNavigate: (Screen?) -> Unit) {
         val coroutineScope = rememberCoroutineScope()
         LaunchedEffect(true) {
             coroutineScope.launch {
-                // TODO BCR 4 2 Loading 1
-                val delay: Long = 0 //1500 + (100 * Random.nextInt(20)).toLong()
+                val delay: Long = 1500 + (100 * Random.nextInt(20)).toLong()
                 delay(delay)
                 isLoading = false
             }
