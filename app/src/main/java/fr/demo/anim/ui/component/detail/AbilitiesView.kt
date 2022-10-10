@@ -43,16 +43,13 @@ private fun AbilityRow(
     color: Color = MaterialTheme.colorScheme.secondary
 ) {
     val animatable = remember {
-        Animatable(value)
-        // TODO BCR 5 1 LaunchedEffect progressbar
-        /*Animatable(0f)*/
+        Animatable(0f)
     }
 
-    // TODO BCR 5 2 LaunchedEffect progressbar
-    /*LaunchedEffect(true) {
+    LaunchedEffect(true) {
         delay(800)
         animatable.animateTo(targetValue = value, animationSpec = tween(2000))
-    }*/
+    }
 
     Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
         Text(
