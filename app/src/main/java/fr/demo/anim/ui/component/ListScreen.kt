@@ -42,9 +42,8 @@ fun ListScreen(onGoDetail: (String) -> Unit) {
     val onInverseSort = {
         sorted = !sorted
         coroutineScope.launch {
-            // TODO ARO 2 1 Lists
-            /*delay(200)
-            lazyListState.animateScrollToItem(0)*/
+            delay(200)
+            lazyListState.animateScrollToItem(0)
         }
     }
     val myItems = remember(sorted) {
@@ -67,9 +66,7 @@ fun ListScreen(onGoDetail: (String) -> Unit) {
         animationSpec = tween(durationMillis = 500, easing = FastOutSlowInEasing)
     )
     var atEnd by remember { mutableStateOf(false) }
-    val fabIcon = Icons.Filled.Sort
-    // TODO ARO 2 2 FAB Icon v2 (AVD)
-    /*val fabIcon = AnimatedImageVector.animatedVectorResource(R.drawable.avd_anim)*/
+    val fabIcon = AnimatedImageVector.animatedVectorResource(R.drawable.avd_anim)
 
     Scaffold(
         topBar = {
@@ -94,14 +91,10 @@ fun ListScreen(onGoDetail: (String) -> Unit) {
             }) {
                 Row(Modifier.padding(horizontal = 16.dp)) {
                     Icon(
-                        modifier = Modifier.scale(1f, scaleY),
-                        imageVector = fabIcon,
-                        // TODO ARO 2 2 FAB Icon v2 (AVD)
-                        /*painter = rememberAnimatedVectorPainter(fabIcon, atEnd),*/
+                        painter = rememberAnimatedVectorPainter(fabIcon, atEnd),
                         contentDescription = null
                     )
-                    // TODO ARO 2 1 Lists (supprimer le texte)
-                    AnimatedVisibility (fabExpand) {
+                    AnimatedVisibility (false) {
                         Text(
                             modifier = Modifier.padding(horizontal = 8.dp),
                             text = "Trier"
@@ -121,8 +114,7 @@ fun ListScreen(onGoDetail: (String) -> Unit) {
                 CatView(
                     modifier = Modifier
                         .fillMaxWidth()
-                        // TODO ARO 2 1 Lists
-                        //.animateItemPlacement()
+                        .animateItemPlacement()
                         .clickable {
                             onGoDetail(cat.id.toString())
                         }
