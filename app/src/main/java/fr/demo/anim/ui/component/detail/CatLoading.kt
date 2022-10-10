@@ -2,10 +2,9 @@ package fr.demo.anim.ui.component.detail
 
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -63,9 +62,9 @@ fun CatLoadingItem(
 
     val circleValue = animatable.value
     val distance = with(LocalDensity.current) { travelDistance.toPx() }
-    /*Box(
+    Box(
         modifier = Modifier
-            .size(circleSize)
+            .size(circleSize/2)
             .graphicsLayer {
                 translationY = -circleValue * distance
             }
@@ -73,8 +72,9 @@ fun CatLoadingItem(
                 color = circleColor,
                 shape = CircleShape
             )
-    )*/
-    Image(
+    )
+    // TODO BCR 4 2 Loading 2
+    /*Image(
         modifier = Modifier
             .size(circleSize)
             .graphicsLayer {
@@ -83,6 +83,6 @@ fun CatLoadingItem(
         painter = painterResource(id = R.drawable.cat_icon),
         contentDescription = null,
         colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary)
-    )
+    )*/
 
 }

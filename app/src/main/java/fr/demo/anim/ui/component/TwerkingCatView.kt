@@ -18,6 +18,22 @@ import fr.demo.anim.R
 @Composable
 fun TwerkingCatView(modifier: Modifier = Modifier) {
 
+    // TODO ARO 4 1 Splash
+    val infiniteTransition = rememberInfiniteTransition()
+    val assRotation by infiniteTransition.animateFloat(
+        initialValue = -20f,
+        targetValue = -20f,
+        animationSpec = infiniteRepeatable(
+            animation = keyframes {
+                durationMillis = 1200
+                -20.0f at 0 with LinearOutSlowInEasing
+                20f at 600 with LinearOutSlowInEasing
+                -20f at 1200 with LinearOutSlowInEasing
+            },
+            repeatMode = RepeatMode.Restart
+        )
+    )
+
     val rotationValue = 0f
     Box(modifier = modifier) {
         Image(
@@ -26,6 +42,8 @@ fun TwerkingCatView(modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxSize()
                 .graphicsLayer {
                     rotationZ = rotationValue
+                    // TODO ARO 4 1 Splash
+                    //rotationZ = assRotation
                 },
             contentScale = ContentScale.Fit
         )

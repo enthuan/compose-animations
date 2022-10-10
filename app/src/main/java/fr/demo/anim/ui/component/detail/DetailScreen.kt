@@ -25,6 +25,7 @@ import fr.demo.anim.ui.navigation.Screen
 import fr.demo.anim.ui.theme.DemoTheme
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.random.Random
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
 @Composable
@@ -65,7 +66,8 @@ fun DetailScreen(id: String?, onNavigate: (Screen?) -> Unit) {
         val coroutineScope = rememberCoroutineScope()
         LaunchedEffect(true) {
             coroutineScope.launch {
-                val delay: Long = 0//2000 + (100 * Random.nextInt(20)).toLong()
+                // TODO BCR 4 2 Loading 1
+                val delay: Long = 0 //1500 + (100 * Random.nextInt(20)).toLong()
                 delay(delay)
                 isLoading = false
             }
