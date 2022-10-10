@@ -1,10 +1,7 @@
 package fr.demo.anim.ui.component.detail
 
 import androidx.compose.animation.*
-import androidx.compose.animation.core.FastOutLinearInEasing
-import androidx.compose.animation.core.LinearOutSlowInEasing
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,6 +17,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.unit.dp
 import fr.demo.anim.model.Cat
 
@@ -28,15 +26,14 @@ fun DescriptionCard(cat: Cat) {
     Card {
         Column {
             var expandState by rememberSaveable { mutableStateOf(true) }
-            // TODO BCR 1 3 Tempérament / Rotation (animateFloatAsState & tween)
-            /*val arrowRotation by animateFloatAsState(
-                        targetValue = (if (expandState) {
-                            -180f
-                        } else {
-                            0f
-                        }),
-                        //animationSpec = tween(durationMillis = 500, easing = FastOutSlowInEasing)
-                    )*/
+            val arrowRotation by animateFloatAsState(
+                targetValue = (if (expandState) {
+                    -180f
+                } else {
+                    0f
+                }),
+                animationSpec = tween(durationMillis = 500, easing = FastOutSlowInEasing)
+            )
             val onClick = { expandState = !expandState }
             Row(
                 modifier = Modifier
@@ -52,40 +49,25 @@ fun DescriptionCard(cat: Cat) {
                     text = "Tempérament"
                 )
                 Icon(
-                    // TODO BCR 1 3 Tempérament / Rotation (rotate)
-                    modifier = Modifier.padding(16.dp)/*.rotate(arrowRotation)*/,
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .rotate(arrowRotation),
                     imageVector = Icons.Filled.KeyboardArrowUp,
                     contentDescription = "Back"
                 )
             }
 
-            if (expandState) {
-            // TODO BCR 1 4 Tempérament / Expanded v1
-            /*AnimatedVisibility (expandState) {*/
-            // TODO BCR 1 5 Tempérament / Expanded v2 (slideInHorizontally)
-            /*AnimatedVisibility(
-                    visible = expandState,
-                    enter = slideInHorizontally(
-                        initialOffsetX = { fullHeight -> fullHeight * -1 },
-                        animationSpec = tween(durationMillis = 150, easing = LinearOutSlowInEasing)
-                    ),
-                    exit = slideOutHorizontally(
-                        targetOffsetX = { fullHeight -> fullHeight * 1 },
-                        animationSpec = tween(durationMillis = 150, easing = FastOutLinearInEasing)
-                    )
-                ) {*/
-            // TODO ARO 1 6 Tempérament / Expanded v3 (slideInVertically / Out / offsetY)
-            /*AnimatedVisibility(
-                    visible = expandState,
-                    enter = slideInVertically(
-                        initialOffsetY = { fullHeight -> fullHeight * -1 },
-                        animationSpec = tween(durationMillis = 150, easing = LinearOutSlowInEasing)
-                    ),
-                    exit = slideOutVertically(
-                        targetOffsetY = { fullHeight -> (fullHeight * -1) },
-                        animationSpec = tween(durationMillis = 150, easing = FastOutLinearInEasing)
-                    )
-                ) {*/
+            AnimatedVisibility(
+                visible = expandState,
+                enter = slideInVertically(
+                    initialOffsetY = { fullHeight -> fullHeight * -1 },
+                    animationSpec = tween(durationMillis = 150, easing = LinearOutSlowInEasing)
+                ),
+                exit = slideOutVertically(
+                    targetOffsetY = { fullHeight -> (fullHeight * -1) },
+                    animationSpec = tween(durationMillis = 150, easing = FastOutLinearInEasing)
+                )
+            ) {
                 Text(
                     modifier = Modifier.padding(16.dp),
                     style = MaterialTheme.typography.bodyMedium,

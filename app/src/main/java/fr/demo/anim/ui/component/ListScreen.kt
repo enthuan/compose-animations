@@ -42,7 +42,9 @@ fun ListScreen(onGoDetail: (String) -> Unit) {
     val onInverseSort = {
         sorted = !sorted
         coroutineScope.launch {
-
+            // TODO ARO 2 1 Lists
+            /*delay(200)
+            lazyListState.animateScrollToItem(0)*/
         }
     }
     val myItems = remember(sorted) {
@@ -66,6 +68,8 @@ fun ListScreen(onGoDetail: (String) -> Unit) {
     )
     var atEnd by remember { mutableStateOf(false) }
     val fabIcon = Icons.Filled.Sort
+    // TODO ARO 2 2 FAB Icon v2 (AVD)
+    /*val fabIcon = AnimatedImageVector.animatedVectorResource(R.drawable.avd_anim)*/
 
     Scaffold(
         topBar = {
@@ -90,16 +94,14 @@ fun ListScreen(onGoDetail: (String) -> Unit) {
             }) {
                 Row(Modifier.padding(horizontal = 16.dp)) {
                     Icon(
-                        // TODO BCR 1 2 FAB Icon v1
-                        //modifier = Modifier.scale(1f, scaleY),
+                        modifier = Modifier.scale(1f, scaleY),
                         imageVector = fabIcon,
+                        // TODO ARO 2 2 FAB Icon v2 (AVD)
+                        /*painter = rememberAnimatedVectorPainter(fabIcon, atEnd),*/
                         contentDescription = null
                     )
-                    if (false) {
-                    // TODO BCR 1 1 FAB Etendu
-                    /*if (fabExpand) {*/
-                    // TODO BCR 1 1 FAB Etendu
-                    /*AnimatedVisibility (fabExpand) {*/
+                    // TODO ARO 2 1 Lists (supprimer le texte)
+                    AnimatedVisibility (fabExpand) {
                         Text(
                             modifier = Modifier.padding(horizontal = 8.dp),
                             text = "Trier"
@@ -119,6 +121,8 @@ fun ListScreen(onGoDetail: (String) -> Unit) {
                 CatView(
                     modifier = Modifier
                         .fillMaxWidth()
+                        // TODO ARO 2 1 Lists
+                        //.animateItemPlacement()
                         .clickable {
                             onGoDetail(cat.id.toString())
                         }

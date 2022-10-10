@@ -25,19 +25,7 @@ fun FavButton(modifier : Modifier = Modifier) {
     var isFav by remember { mutableStateOf(false) }
     val onFav = { isFav = !isFav }
 
-    val contentColor = if (isFav) {
-            MaterialTheme.colorScheme.onPrimary
-        } else {
-            MaterialTheme.colorScheme.onSurface
-        }
-    val containerColor = if (isFav) {
-            MaterialTheme.colorScheme.primary
-        } else {
-            MaterialTheme.colorScheme.surface
-        }
-
-    // TODO BCR 1 7 Fav (+ value)
-    /*val animationSpec = tween<Color>(400)
+    val animationSpec = tween<Color>(400)
     val contentColor = animateColorAsState(
         targetValue = if (isFav) {
             MaterialTheme.colorScheme.onPrimary
@@ -53,15 +41,15 @@ fun FavButton(modifier : Modifier = Modifier) {
             MaterialTheme.colorScheme.surface
         },
         animationSpec = animationSpec
-    )*/
+    )
 
     CompositionLocalProvider(LocalRippleTheme provides NoRippleTheme) {
         Button(
             modifier = modifier.height(60.dp),
             contentPadding = PaddingValues(0.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = containerColor,
-                contentColor = contentColor,
+                containerColor = containerColor.value,
+                contentColor = contentColor.value,
             ),
             onClick = onFav
         )
@@ -69,7 +57,7 @@ fun FavButton(modifier : Modifier = Modifier) {
             Icon(
                 imageVector = Icons.Filled.Favorite,
                 contentDescription = null,
-                tint = contentColor
+                tint = contentColor.value
             )
         }
     }
