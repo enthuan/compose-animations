@@ -1,1 +1,1 @@
-# compose-animations
+Animations avec Compose : rendez vos apps chat-oyantes
